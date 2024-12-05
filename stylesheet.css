@@ -39,22 +39,55 @@ p {
     border-radius: 5px; /* Rounded corners */
 }
 
-/* Style for the landing container */
+/* Center the landing container */
 .landing-container {
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center;    /* Centers vertically */
-    height: 100vh;          /* Takes full viewport height */
-    background: linear-gradient(to bottom right, #355085, #7F9FEB); /* Gradient background */
-    color: #F4F3E8;         /* Cream text color */
-    text-align: center;     /* Center the text */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Full viewport height */
+    background: linear-gradient(to bottom right, var(--deep-blue), var(--blue)); /* Gradient background */
+    color: var(--creme); /* Text color */
+    text-align: center; /* Center-align text */
 }
 
 /* Style for the title */
 .landing-title {
-    font-size: 8rem;        /* Large font size */
-    font-weight: bold;      /* Bold text */
-    font-family: 'Arial', sans-serif; /* Clean, readable font */
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-    margin: 0;
+    font-size: 8rem; /* Large font size */
+    font-weight: bold; /* Bold text */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    margin-bottom: 30px; /* Space between title and buttons */
 }
+
+/* Container for buttons */
+.button-container {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+}
+
+/* Styling for the buttons */
+.large-button {
+    padding: 15px 30px; /* Large clickable area */
+    font-size: 1.5rem; /* Bigger text */
+    font-weight: bold; /* Bold text */
+    color: var(--white); /* White text */
+    background-color: var(--deep-blue); /* Deep blue background */
+    border: none; /* Removes border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for buttons */
+.large-button:hover {
+    background-color: var(--blue); /* Lighter blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active button effect */
+.large-button:active {
+    transform: scale(0.95); /* Slightly shrink when clicked */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* Adjust shadow */
+}
+
