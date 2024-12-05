@@ -1,17 +1,16 @@
 
-/* Define color presets using CSS variables */
-:root {
+/* colour pallete */
+:root{
     --deep-blue: #355085;
     --blue: #7F9FEB;
     --creme: #F4F3E8;
     --white: #FEFCFF;
     --licorice: #312121;
 }
-
-/* Example application of color presets */
+/* body styling*/
 body {
-    background-color: var(--creme); /* Set the background to creme */
-    color: var(--licorice); /* Use licorice for text */
+    background-color: var(--creme); 
+    color: var(--licorice); 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -19,75 +18,55 @@ body {
     height: 100%;
 }
 
-.top-bar {
-    background-color: var(--deep-blue); /* Deep blue for the top bar */
-}
-
-.top-bar ul li a {
-    color: var(--white); /* White for the links in the top bar */
-}
-
-.top-bar ul li a:hover {
-    background-color: var(--blue); /* Blue for hover effect */
-}
-
-p {
-    color: var(--licorice); /* Licorice for paragraph text */
-    background-color: var(--white); /* White background for emphasis */
-    padding: 10px;
-    border: 1px solid var(--blue); /* Blue border for styling */
-    border-radius: 5px; /* Rounded corners */
-}
-
 /* Center the landing container */
 .landing-container {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    height: 100vh; /* Full viewport height */
-    background: linear-gradient(to bottom right, var(--deep-blue), var(--blue)); /* Gradient background */
-    color: var(--creme); /* Text color */
-    text-align: center; /* Center-align text */
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background: linear-gradient(to bottom right, var(--deep-blue), var(--blue)); 
+    color: var(--creme); 
+    text-align: center; 
 }
 
-/* Style for the title */
+/* title */
 .landing-title {
-    font-size: 8rem; /* Large font size */
-    font-weight: bold; /* Bold text */
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-    margin-bottom: 30px; /* Space between title and buttons */
+    font-size: 8rem; 
+    font-weight: bold; 
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); 
+    margin-bottom: 30px; 
 }
 
 /* Container for buttons */
 .button-container {
     display: flex;
-    gap: 20px; /* Space between buttons */
+    gap: 20px; 
 }
 
 /* Styling for the buttons */
-.large-button {
-    padding: 15px 30px; /* Large clickable area */
-    font-size: 1.5rem; /* Bigger text */
-    font-weight: bold; /* Bold text */
-    color: var(--white); /* White text */
-    background-color: var(--deep-blue); /* Deep blue background */
-    border: none; /* Removes border */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: all 0.3s ease; /* Smooth hover effect */
+.button {
+    padding: 15px 30px; 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    color: var(--white); 
+    background-color: var(--deep-blue); 
+    border: none; 
+    border-radius: 10px; 
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
 }
 
 /* Hover effect for buttons */
-.large-button:hover {
-    background-color: var(--blue); /* Lighter blue on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.button:hover {
+    background-color: var(--blue); 
+    transform: scale(1.05); 
 }
 
 /* Active button effect */
-.large-button:active {
-    transform: scale(0.95); /* Slightly shrink when clicked */
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* Adjust shadow */
+.button:active {
+    transform: scale(0.95); 
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); 
 }
 
