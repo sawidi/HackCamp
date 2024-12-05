@@ -52,7 +52,7 @@ p {
 
 /* Style for the title */
 .landing-title {
-    font-size: 5rem;        /* Large font size */
+    font-size: 8rem;        /* Large font size */
     font-weight: bold;      /* Bold text */
     font-family: 'Arial', sans-serif; /* Clean, readable font */
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
