@@ -1,19 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script> 
 <head>
     <meta charset="UTF-8">
     <title>Chippie Digital Data Visualisation</title>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <div class="topnav">
-        <p>Chippy Digital</p>
-        <div class="nav-links">
-            <a href="" class="active">Home</a>
-            <a href="">News</a>
-            <a href="">Contact</a>
-            <a href="">About</a>
+    <div class="page-layout">
+        <div class="topnav">
+            <p>Chippy Digital</p>
+            <div class="nav-links">
+                <a href="" >Home</a>
+                <a href="">Ptofiles</a>
+                <a href="" class="active">Comparison</a>
+            </div>
         </div>
-    </div>    
+        <div class="sidebar">
+
+        </div>
+        <div class="main-content">
+            <div class="Chart">
+                <canvas id="barGraph"></canvas> 
+            </div>
+            <div class="Chart">
+                <canvas id="lineGraph"></canvas> 
+            </div>
+        </div>
+        
+        <div class="sidebar2" style="">
+
+        </div>
+    </div>
+    
 </body>
+
+<script>
+    const x2Values = ["Italy", "France", "Spain", "USA", "Argentina"];
+    const y2Values = [55, 49, 44, 24, 15];
+    const barColors = ["red", "green","blue","orange","brown"];
+    
+    new Chart("barGraph", {
+        type: "bar",
+        data: 
+        {
+            labels: x2Values,
+            datasets: [{
+            backgroundColor: barColors,
+            data: y2Values
+        }]
+        },
+        options: {
+        legend: {display: false},
+        title: {
+        display: true,
+        text: "World Wine Production 2018"
+    }
+    }
+    });
+</script>
+<script>
+    const x1Values = [50,60,70,80,90,100,110,120,130,140,150];
+    const y1Values = [7,8,8,9,9,9,10,11,14,14,15];
+    
+    new Chart("lineGraph", {
+    type: "line",
+    data: {
+    labels: x1Values,
+    datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: y1Values
+    }]
+    },
+    options: {
+    legend: {display: false},
+    scales: {
+        yAxes: [{ticks: {min: 6, max:16}}],
+    }
+    }
+    });
+</script>
 </html>

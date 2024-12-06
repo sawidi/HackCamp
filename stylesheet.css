@@ -39,13 +39,7 @@
 .button-2 {
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
-    color: var(--white); 
-    background-color: var(--deep-blue);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    font-size: 20px;margin: 0;
     transition: all 0.3s ease;
     padding: 15px 32px;
 }
@@ -65,8 +59,7 @@
 /* Title inside topnav */
 .topnav {
     display: flex;
-    align-items: center;
-    
+    align-items: center; 
     position: fixed;
     top: 0;
     left: 0;
@@ -79,6 +72,10 @@
     overflow: hidden;
 }
 
+/* Page layout */
+.page-layout {
+    margin: 0;
+}
 /* Title inside topnav */
 .topnav p {
     margin: 0;
@@ -108,6 +105,45 @@
 .topnav a.active {
     background-color: var(--white);
     color: var(--deep-blue);
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    margin-top: 59px;
+    width: 350px;
+    background-color: var(--deep-blue);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #000000;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    height: 70vh;
+    width: 70vh;
+    padding-left: 60vh;
+    padding-top: 10vh;
+    margin: 0
 }
 
 
