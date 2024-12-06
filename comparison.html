@@ -13,25 +13,29 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         <div class="topnav">
             <p>Chippy Digital</p>
             <div class="nav-links">
-                <a href="" >Home</a>
-                <a href="">Ptofiles</a>
+                <a href="index.html" >Home</a>
+                <a href="profileDefault.html">Profiles</a>
                 <a href="" class="active">Comparison</a>
             </div>
         </div>
-        <div class="sidebar">
+        <div class body-container>
+            <div class="sidebar">
 
-        </div>
-        <div class="main-content">
-            <div class="Chart">
-                <canvas id="barGraph"></canvas> 
             </div>
-            <div class="Chart">
-                <canvas id="lineGraph"></canvas> 
+            <div class="main-content">
+                <div class="Chart">
+                    <canvas id="barGraph"></canvas> 
+                </div>
+                <div class="Chart">
+                    <canvas id="lineGraph"></canvas> 
+                </div>
+                <div class="Chart">
+                    <canvas id="multipleLGraph"></canvas> 
+                </div>
             </div>
-        </div>
-        
-        <div class="sidebar2" style="">
-
+            <div class="sidebar2" style="">
+    
+            </div>
         </div>
     </div>
     
@@ -84,5 +88,31 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     }
     }
     });
+</script>
+<script>
+    const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("multipleLGraph", {
+    type: "line",
+    data: {
+    labels: xValues,
+    datasets: [{
+    data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+    borderColor: "red",
+    fill: false
+},{
+    data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+    borderColor: "green",
+    fill: false
+},{
+    data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+    borderColor: "blue",
+    fill: false
+    }]
+    },
+    options: {
+    legend: {display: false}
+}
+});
 </script>
 </html>

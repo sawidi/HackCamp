@@ -21,7 +21,6 @@
     left:0px;
     z-index:1000;
 }
-
 .landing-title {
     margin-bottom: 20px; 
     font-size: 8rem; 
@@ -35,7 +34,6 @@
     gap: 20px; 
     margin-top: 20px;
 }
-
 .button-2 {
     text-decoration: none;
     font-weight: bold;
@@ -43,23 +41,26 @@
     transition: all 0.3s ease;
     padding: 15px 32px;
 }
-
 /* hover effect for buttons */
 .button-2:hover {
     background-color: var(--blue);
     transform: scale(1.05);
 }
-
 /* active button effect */
 .button-2:active {
     transform: scale(0.95);
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
+/* Page layout */
+.page-layout {
+    margin: 0;
+}
 
 /* Title inside topnav */
 .topnav {
     display: flex;
-    align-items: center; 
+    align-items: center;
+    justify-content: space-between; /* Space between title and links */
     position: fixed;
     top: 0;
     left: 0;
@@ -70,43 +71,44 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     overflow: hidden;
+    
 }
 
-/* Page layout */
-.page-layout {
-    margin: 0;
+.nav-links {
+    padding-right: 30px;
 }
 /* Title inside topnav */
 .topnav p {
     margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--creme);
 }
-
 /* Links inside topnav */
 .topnav a {
+    position: relative;
     color: var(--creme);
     text-decoration: none;
     float: right;
-    padding: 11px 14px;
+    padding: 5px 5px;
+    margin: 5px;
     font-size: 1rem;
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: 5px;
 }
-
 /* Hover effects for links */
 .topnav a:hover {
     background-color: var(--blue);
-    color: var(--white);
 }
-
 /* Active link styling */
 .topnav a.active {
-    background-color: var(--white);
+    background-color: var(--creme);
+    opacity: 0.33;
     color: var(--deep-blue);
 }
 
+.body-container {
+    overflow:auto;
+}
 .sidebar {
     margin: 0;
     padding: 0;
@@ -115,35 +117,18 @@
     background-color: var(--deep-blue);
     position: fixed;
     height: 100%;
-    overflow: auto;
+    float: left;
 }
-
-
-
-.sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-}
-
-.sidebar a.active {
-    background-color: #000000;
-    color: white;
-}
-
-.sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-}
-
-/* Main content */
 .main-content {
     height: 70vh;
     width: 70vh;
-    padding-left: 60vh;
+    padding-left: 70vh;
     padding-top: 10vh;
     margin: 0
+    
+}
+canvas {
+    padding-bottom: 10vh;
 }
 
 
