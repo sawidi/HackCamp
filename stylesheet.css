@@ -52,8 +52,8 @@
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 /* Page layout */
-.page-layout {
-    margin: 0;
+.body-container{
+    display: flex;
 }
 
 /* Title inside topnav */
@@ -122,13 +122,23 @@
 .main-content {
     height: 70vh;
     width: 70vh;
-    padding-left: 70vh;
+    display: flex;
     padding-top: 10vh;
     margin: 0
     
 }
 canvas {
     padding-bottom: 10vh;
+}
+.box > * {
+    border: 2px solid rgb(96 139 168);
+    border-radius: 50px;
+}
+.box {
+
+    display: flex;
+    margin: 10px;
+    gap: 10px;
 }
 
 
