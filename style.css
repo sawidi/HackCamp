@@ -1,0 +1,69 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+html, 
+body {
+	font-family: 'Montserrat', sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+.wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+	overflow: hidden;
+}
+
+.main-content {
+	display: flex;
+	flex-flow: row wrap;
+	height: 100%;
+}
+.main-content > * {
+	flex: 1 100%;
+	margin: 1px;
+}
+.header {
+	background-color: aqua;
+}
+.footer {
+	background-color: aquamarine;
+	margin-top: auto;
+}
+.main {
+    flex: 3;
+    order: 2;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align content to the top */
+}
+
+.sidebar1 {
+	background-color: blue;
+}
+.sidebar2 {
+	background-color: firebrick;
+}
+
+.sidebar {
+	flex: 1;
+}
+@media screen and (min-width:750px) {
+	.main {
+		flex: 3;
+		order: 2;
+	}
+	.sidebar1 {
+		order: 1;
+	}
+	.sidebar2 {
+		order: 3;
+	}
+	
+}
+
+@media screen and (min-width:600px){
+	.sidebar {
+		flex: 1;
+	}
+}
