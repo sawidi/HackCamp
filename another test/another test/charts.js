@@ -2,7 +2,7 @@
 
     // Load the dataset
     const data = await fetch(
-        'https://demo-live-data.highcharts.com/aapl-c.json'
+        'data.json'
     ).then(response => response.json());
 
     // Create the chart
@@ -13,11 +13,17 @@
         },
 
         title: {
-            text: 'AAPL Stock Price'
+            text: 'User Data'
         },
+        yAxis: {
+            title: {
+                text: 'Number of Employees'
+            }
+        },
+    
 
         series: [{
-            name: 'AAPL Stock Price',
+            name: 'User Data',
             data: data,
             step: true,
             tooltip: {
