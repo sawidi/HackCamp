@@ -8,7 +8,7 @@
 
 .landing-container {
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--creme);
+    color: var(--cream);
     background: linear-gradient(to bottom right, var(--deep-blue), var(--blue)); 
     display: flex; 
     flex-direction: column; 
