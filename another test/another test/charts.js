@@ -1,219 +1,231 @@
-(async () => {
-
-
-    const data = [
-        // [date DD-MM-YYYY --> Unix time stamp, lines created n(integer), lines deleted n(integer), code readability 0-10, something else 0-10]
-        ['x', 'created', 'deleted', 'readability', 'idk'],
-        [1672531200000, 120, 30, 8, 7],
-    [1672617600000, 90, 20, 7, 6],
-    [1672704000000, 150, 40, 9, 8],
-    [1672790400000, 200, 50, 6, 7],
-    [1672876800000, 110, 10, 8, 9],
-    [1672963200000, 70, 5, 7, 6],
-    [1673049600000, 130, 25, 9, 8],
-    [1673136000000, 95, 15, 6, 7],
-    [1673222400000, 160, 35, 8, 9],
-    [1673308800000, 180, 45, 7, 8]
-    ];
-    Highcharts.setOptions({
-        chart: {
-            spacingTop: 20,
-            spacingBottom: 20,
-            height: 300,
-            type: 'area',
-            zooming: {
-                type: 'xy'
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            stickOnContact: true
-        },
-        yAxis: {
-            title: {
-                text: 'Lines'
-            },
-            accessibility: {
-                description: 'value in percents'
-            }
-        },
-        xAxis: {
-            title: {
-                text: 'Date'
-            },
-            type: 'datetime',
-            accessibility: {
-                description: 'Years',
-                rangeDescription: 'Data ranges from 2000-01-01 to 2021-01-01.'
-            }
+Highcharts.chart('line', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Lines Created by Users'
+    },
+    subtitle: {
+        text: 'Source: Github Repo'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 120,
+        y: 70,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+    },
+    xAxis: {
+        // highlight here
+        plotBands: [{
+            color: 'rgba(68, 170, 213, .2)'
+        }],
+        type: 'datetime',
+        title: {
+            text: 'Date'
         }
-    });
-    
-    Dashboards.board('dashboard-container', {
-        editMode: {
-            enabled: true,
-            contextMenu: {
+    },
+    yAxis: {
+        title: {
+            text: 'Lines Count'
+        }
+    },
+    tooltip: {
+        shared: true,
+        headerFormat: '<b>{point.x:%Y-%m-%d}</b><br>'
+    },
+    credits: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            pointStart: Date.UTC(2000, 0, 1),
+            pointIntervalUnit: 'day'
+        },
+        areaspline: {
+            fillOpacity: 0.5
+        }
+    },
+    series: [
+        {
+            name: 'Bob',
+            data: [
+                [1672876800000, 120],
+                [1672963200000, 85],
+                [1673049600000, 140],
+                [1673136000000, 100]
+            ]
+        },
+        {
+            name: 'Alice',
+            data: [
+                [1672876800000, 150],
+                [1672963200000, 90],
+                [1673049600000, 160],
+                [1673136000000, 120]
+            ]
+        },
+        {
+            name: 'Charlie',
+            data: [
+                [1672876800000, 130],
+                [1672963200000, 95],
+                [1673049600000, 145],
+                [1673136000000, 110]
+            ]
+        }
+    ]
+});
+
+Highcharts.chart('line2', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Lines Deleted by Users'
+    },
+    subtitle: {
+        text: 'Source: Github Repo'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 120,
+        y: 70,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+    },
+    xAxis: {
+        // highlight here
+        plotBands: [{
+            color: 'rgba(68, 170, 213, .2)'
+        }],
+        type: 'datetime', 
+        title: {
+            text: 'Date'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Lines Count'
+        }
+    },
+    tooltip: {
+        shared: true,
+        headerFormat: '<b>{point.x:%Y-%m-%d}</b><br>'
+    },
+    credits: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            pointStart: Date.UTC(2000, 0, 1), // Adjust based on your earliest timestamp
+            pointIntervalUnit: 'day' // Adjust based on your data frequency
+        },
+        areaspline: {
+            fillOpacity: 0.5
+        }
+    },
+    series: [
+        {
+            name: 'Bob',
+            data: [
+                [1672876800000, 15],
+                [1672963200000, 20],
+                [1673049600000, 30],
+                [1673136000000, 25]
+            ]
+        },
+        {
+            name: 'Alice',
+            data: [
+                [1672876800000, 10],
+                [1672963200000, 18],
+                [1673049600000, 25],
+                [1673136000000, 20]
+            ]
+        },
+        {
+            name: 'Charlie',
+            data: [
+                [1672876800000, 12],
+                [1672963200000, 15],
+                [1673049600000, 20],
+                [1673136000000, 18]
+            ]
+        }
+    ]
+});
+
+Highcharts.chart('bar', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'User scores'
+    },
+    subtitle: {
+        text: 'Source: Fuck knows'
+    },
+    xAxis: {
+        categories: ['Bob', 'Alice', 'Charlie'],
+        title: {
+            text: null
+        },
+        gridLineWidth: 1,
+        lineWidth: 0
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Population (millions)',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        },
+        gridLineWidth: 0
+    },
+    // tooltip: {
+    //     valueSuffix: ' millions'
+    // },
+    plotOptions: {
+        bar: {
+            borderRadius: '50%',
+            dataLabels: {
                 enabled: true
-            }
-        },
-        dataPool: {
-            connectors: [{
-                id: 'connector-1',
-                type: 'JSON',
-                options: {
-                    data
-                }
-            }, {
-                id: 'connector-2',
-                type: 'JSON',
-                options: {
-                    data
-                }
             },
-            {
-                id: 'connector-3',
-                type: 'JSON',
-                options: {
-                    data
-                }
-            }, {
-                id: 'connector-4',
-                type: 'JSON',
-                options: {
-                    data
-                }
-            }]
-        },
-        gui: {
-            layouts: [{
-                id: 'layout-1',
-                rows: [{
-                    cells: [{
-                        id: 'title'
-                    }]
-                }, {
-                    cells: [{
-                        id: 'dashboard-col-1'
-                    }]
-                }, {
-                    cells: [{
-                        id: 'dashboard-col-2'
-                    }]
-                }, {
-                    cells: [{
-                        id: 'dashboard-col-3'
-                    }, {
-                        id: 'dashboard-col-4'
-                    }]
-                }]
-            }]
-        },
-        components: [{
-            renderTo: 'title',
-            type: 'HTML',
-            elements: [{
-                tagName: 'h1',
-                textContent: 'Git data'
-            }]
-        }, 
-        
-        
-        {
-            renderTo: 'dashboard-col-1',
-            type: 'Highcharts',
-            connector: {
-                id: 'connector-1',
-                columnAssignment: [{
-                    seriesId: 'Created',
-                    data: ['x', 'created']
-                },
-                {
-                    seriesId: 'Deleted',
-                    data: ['x', 'deleted']
-                }]
-            },
-            sync: {
-                extremes: true,
-                highlight: true
-            },
-            chartOptions: {
-                chart: {
-                    zooming: {
-                        type: 'x'
-                    }
-                },
-                title: {
-                    text: 'Lines'
-                },
-                legend: {
-                    enabled: true
-                },
-                credits: {
-                    enabled: false
-                }
-            }
-        }, 
-        
-        
-        
-        
-        
-        {
-            renderTo: 'dashboard-col-2',
-            type: 'Highcharts',
-            connector: {
-                id: 'connector-1',
-                columnAssignment: [{
-                    seriesId: 'South-East Asia',
-                    data: ['x', 'South-East Asia']
-                }]
-            },
-            sync: {
-                extremes: true,
-                highlight: true
-            },
-            chartOptions: {
-                chart: {
-                    zooming: {
-                        type: 'x'
-                    }
-                },
-                title: {
-                    text: 'yuh'
-                },
-                legend: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
-                },
-                plotOptions: 
-                {
-                    series: {
-                        colorIndex: 1
-                    }
-                }
-            }
-        },
-
-
-
-
-        {
-            renderTo: 'dashboard-col-0',
-            type: 'Highcharts',
-            connector: {
-                id: 'synchro-data'
-            },
-            sync: {
-                highlight: true
-            },
-            chartOptions: {
-                
-            }
-        }]
-    }, true);
-})();
-    
+            groupPadding: 0.1
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Code Readability',
+        data: [6, 9, 10]
+    }, {
+        name: 'idk',
+        data: [8, 3, 10]
+    }//, add more attributes here
+]
+});
