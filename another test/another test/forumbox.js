@@ -1,0 +1,1 @@
+// read data from user and push it to data.js
