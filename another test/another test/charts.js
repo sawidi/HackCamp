@@ -1,231 +1,106 @@
-Highcharts.chart('line', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Lines Created by Users'
-    },
-    subtitle: {
-        text: 'Source: Github Repo'
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'left',
-        verticalAlign: 'top',
-        x: 120,
-        y: 70,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor:
-            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
-    },
-    xAxis: {
-        // highlight here
-        plotBands: [{
-            color: 'rgba(68, 170, 213, .2)'
-        }],
-        type: 'datetime',
-        title: {
-            text: 'Date'
-        }
-    },
-    yAxis: {
-        title: {
-            text: 'Lines Count'
-        }
-    },
-    tooltip: {
-        shared: true,
-        headerFormat: '<b>{point.x:%Y-%m-%d}</b><br>'
-    },
-    credits: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            pointStart: Date.UTC(2000, 0, 1),
-            pointIntervalUnit: 'day'
-        },
-        areaspline: {
-            fillOpacity: 0.5
-        }
-    },
-    series: [
-        {
-            name: 'Bob',
-            data: [
-                [1672876800000, 120],
-                [1672963200000, 85],
-                [1673049600000, 140],
-                [1673136000000, 100]
-            ]
-        },
-        {
-            name: 'Alice',
-            data: [
-                [1672876800000, 150],
-                [1672963200000, 90],
-                [1673049600000, 160],
-                [1673136000000, 120]
-            ]
-        },
-        {
-            name: 'Charlie',
-            data: [
-                [1672876800000, 130],
-                [1672963200000, 95],
-                [1673049600000, 145],
-                [1673136000000, 110]
-            ]
-        }
-    ]
+// Paths to JSON files
+// json files
+const lineChartFile1 = 'http://127.0.0.1:5500/linesCreatedData.json';
+const lineChartFile2 = 'http://127.0.0.1:5500/linesDeletedData.json';
+const barChartFile = 'http://127.0.0.1:5500/barChart.json';
+
+
+// Load all JSON files simultaneously
+Promise.all([
+    fetch(lineChartFile1).then(response => response.json()),
+    fetch(lineChartFile2).then(response => response.json()),
+    fetch(barChartFile).then(response => response.json())
+]).then(([lineData1, lineData2, barData]) => {
+    // Create charts using the loaded data
+    createFirstLineChart(lineData1);
+    createSecondLineChart(lineData2);
+    createBarChart(barData);
+    console.log('Databases loaded');
+
+}).catch(error => {
+    console.error('Error loading JSON files:', error);
 });
 
-Highcharts.chart('line2', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Lines Deleted by Users'
-    },
-    subtitle: {
-        text: 'Source: Github Repo'
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'left',
-        verticalAlign: 'top',
-        x: 120,
-        y: 70,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor:
-            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
-    },
-    xAxis: {
-        // highlight here
-        plotBands: [{
-            color: 'rgba(68, 170, 213, .2)'
-        }],
-        type: 'datetime', 
-        title: {
-            text: 'Date'
-        }
-    },
-    yAxis: {
-        title: {
-            text: 'Lines Count'
-        }
-    },
-    tooltip: {
-        shared: true,
-        headerFormat: '<b>{point.x:%Y-%m-%d}</b><br>'
-    },
-    credits: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            pointStart: Date.UTC(2000, 0, 1), // Adjust based on your earliest timestamp
-            pointIntervalUnit: 'day' // Adjust based on your data frequency
-        },
-        areaspline: {
-            fillOpacity: 0.5
-        }
-    },
-    series: [
-        {
-            name: 'Bob',
-            data: [
-                [1672876800000, 15],
-                [1672963200000, 20],
-                [1673049600000, 30],
-                [1673136000000, 25]
-            ]
-        },
-        {
-            name: 'Alice',
-            data: [
-                [1672876800000, 10],
-                [1672963200000, 18],
-                [1673049600000, 25],
-                [1673136000000, 20]
-            ]
-        },
-        {
-            name: 'Charlie',
-            data: [
-                [1672876800000, 12],
-                [1672963200000, 15],
-                [1673049600000, 20],
-                [1673136000000, 18]
-            ]
-        }
-    ]
-});
+// lines created chart
+function createFirstLineChart(data) {
+    Highcharts.chart('line', {
+        chart: { type: 'line' },
+        title: { text: 'First Line Chart' },
+        xAxis: { type: 'datetime' },
+        yAxis: { title: { text: 'Values' } },
+        series: data.map(user => ({
+            name: user.name,
+            data: user.data
+        }))
+    });
+}
 
-Highcharts.chart('bar', {
-    chart: {
-        type: 'bar'
-    },
-    title: {
-        text: 'User scores'
-    },
-    subtitle: {
-        text: 'Source: Fuck knows'
-    },
-    xAxis: {
-        categories: ['Bob', 'Alice', 'Charlie'],
+// lines deleted chart
+function createSecondLineChart(data) {
+    Highcharts.chart('line2', {
+        chart: { type: 'line' },
+        title: { text: 'Second Line Chart' },
+        xAxis: { type: 'datetime' },
+        yAxis: { title: { text: 'Values' } },
+        series: data.map(user => ({
+            name: user.name,
+            data: user.data
+        }))
+    });
+}
+
+// bar chart
+function createBarChart(data) {
+    Highcharts.chart('bar', {
+        chart: {
+            type: 'bar'
+        },
         title: {
-            text: null
+            text: 'Code Readability and Yuh by Users'
         },
-        gridLineWidth: 1,
-        lineWidth: 0
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Population (millions)',
-            align: 'high'
+        xAxis: {
+            categories: data.map(user => user.name), // Map user names to x-axis
+            title: {
+                text: 'Users'
+            }
         },
-        labels: {
-            overflow: 'justify'
-        },
-        gridLineWidth: 0
-    },
-    // tooltip: {
-    //     valueSuffix: ' millions'
-    // },
-    plotOptions: {
-        bar: {
-            borderRadius: '50%',
-            dataLabels: {
-                enabled: true
+        yAxis: [
+            {
+                title: {
+                    text: 'Code Readability' // Label for first Y-axis
+                },
+                opposite: false // Left side
             },
-            groupPadding: 0.1
-        }
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor:
-            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-        shadow: true
-    },
-    credits: {
-        enabled: false
-    },
-    series: [{
-        name: 'Code Readability',
-        data: [6, 9, 10]
-    }, {
-        name: 'idk',
-        data: [8, 3, 10]
-    }//, add more attributes here
-]
-});
+            {
+                title: {
+                    text: 'Yuh' // Label for second Y-axis
+                },
+                opposite: true // Right side
+            }
+        ],
+    
+        tooltip: {
+            shared: true
+        },
+        plotOptions: {
+            series: {
+                grouping: true, // Keep bars separated
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        series: [
+            {
+                name: 'Code Readability',
+                data: data.map(user => user.data[0][0]), // Use the first row's first value for each user
+                yAxis: 0 // Link to first Y-axis
+            },
+            {
+                name: 'Yuh',
+                data: data.map(user => user.data[0][1]), // Use the first row's second value for each user
+                yAxis: 1 // Link to second Y-axis
+            }
+        ]
+    });
+}

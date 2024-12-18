@@ -53,13 +53,13 @@ body {
 	flex: 1;
 }
 
-#line #line1 #bar  {
-    width: auto;
+#line #line2 #bar  {
+    width: 300px;
 	margin: 10px;
 	padding: 25px;
+	position: relative;
+	z-index: 10;
 }
-
-
 
 
 @media screen and (min-width:750px) {
