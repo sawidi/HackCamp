@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Highcharts Scripts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>navbar</h1>
+        </div>
+        
+        <div class="main-content">
+            <div class="main">
+                <div id="line"></div>
+                <div id="line2"></div>
+                <div id="bar"></div>
+            </div>
+
+
+            <div class="sidebar sidebar1">
+                <h1>Sidebar1</h1>
+                <a href="java.html">Java</a>
+                <a href="PHP.html">PHP</a>
+                <a href="CPlusPlus.html">C++</a>
+                <a href="CSS.html">CSS</a>
+            </div>
+
+
+            <div class="sidebar sidebar2">
+                <h1>Add something</h1>
+                <h2>Add created lines</h2>
+                <div class="add-box add1">
+                    <br>
+                    <div>
+                        <form id="addLineForm">
+                            <label for="username">User Name:</label>
+                            <br>
+                            <input type="text" id="username" placeholder="Enter user name" required>
+                            <br>
+                            <label for="createdlines">Lines Created:</label>
+                            <br>
+                            <input type="number" id="createdlines" placeholder="Enter lines created" required>
+                            <br>
+                            <label for="datecreated">Date:</label>
+                            <br>
+                            <input type="date" id="datecreated" required>
+                            <br>
+                            <button type="button" id="createdaddbutton">Add Data</button>
+                        </form>                        
+                    </div>
+                </div>
+                <h2>Add removed lines</h2>
+                <div class="add-box add2">
+                    <br>
+                    <div>
+                        <form id="removeLineForm">
+                            <label for="userName2">User Name:</label>
+                            <br>
+                            <input type="text" id="userName2" placeholder="Enter user name" required>
+                            <br>
+                            <label for="removedLines">Lines Removed:</label>
+                            <br>
+                            <input type="number" id="removedLines" placeholder="Enter lines removed" required>
+                            <br>
+                            <label for="dateRemoved">Date:</label>
+                            <br>
+                            <input type="date" id="dateRemoved" required>
+                            <br>
+                            <button type="button" id="addButton2">Add Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="footer">
+            <h1>footer</h1>
+        </div>
+    
+    </div>
+</body>
+
+<script src="charts.js"></script>
+</html>
+ 
