@@ -8,3 +8,4 @@ Languages used:
 Javascript frameworks
     1. Highcharts (Chart rendering)
     2. Node.js (Backend)
+(USE NODE.JS TO SAVE DATA)
