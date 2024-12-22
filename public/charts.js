@@ -2,6 +2,7 @@
 const lineChartFile1 = 'http://127.0.0.1:5500/linesCreatedData.json';
 const lineChartFile2 = 'http://127.0.0.1:5500/linesDeletedData.json';
 const barChartFile = 'http://127.0.0.1:5500/barChart.json';
+const baseURL = "http://localhost:5500";
 
 // initialise stuff
 let linesCreatedData = []; 
@@ -99,8 +100,10 @@ Promise.all(
             return;
         }
 
+        // give variables for functions to handle
+        const linesCreatedURL = `${baseURL}/update-lines-created`;
         handleLineData(userName, createdLines, dateCreated, linesCreatedData);
-        saveCreatedDataToServer(linesCreatedData);
+        saveDataToServer(linesCreatedData, linesCreatedURL);
 
         // clear input fields after use
         document.getElementById('username').value = '';
@@ -122,8 +125,10 @@ Promise.all(
             return;
         }
 
+        // give variables for functions to handle
+        const linesRemovedURL = `${baseURL}/update-lines-deleted`;
         handleLineData(userName, removedLines, dateRemoved, linesRemovedData);
-        saveRemovedDataToServer(linesRemovedData);
+        saveDataToServer(linesRemovedData, linesRemovedURL);
         console.log('save successful');
 
         // clear input fields after use
@@ -136,24 +141,27 @@ Promise.all(
     function handleLineData(userName, enteredLines, dateEntered, data) 
     {
         const timestamp = Date.parse(dateEntered);
-
+        // if timestamp isnt a timestamp value, return
         if (isNaN(timestamp)) 
         {
             alert('Invalid date format!');
             return;
         }
 
+        // search for user in the array
         let user = data.find(user => user.name === userName);
-
+        // if found, push entry in the array (will be sorted in the backend)
         if (user) 
             { user.data.push([timestamp, enteredLines]); } 
-        else 
+        else
+        // if not found, create a new user and push as a new entry  
         {
             const newUser = { name: userName, data: [[timestamp, enteredLines]] };
             data.push(newUser);
             lineChartCreated.addSeries({ name: userName, data: newUser.data });
         }
 
+        // update the chart
         lineChartCreated.series.forEach(series => 
         {
             const userData = data.find(user => user.name === series.name);
@@ -170,14 +178,19 @@ Promise.all(
         const userName = document.getElementById('deleteCreatedLineUsername').value.trim();
         const dateToDelete = document.getElementById('deleteCreatedDate').value;
 
+        // if fields are empty
         if (!userName || !dateToDelete) 
         {
             alert('Please enter valid data!');
             return;
         }
 
+        const linesCreatedURL = `${baseURL}/update-lines-created`;
+
+        // give variables for functions to handle
         deleteLineData(userName, dateToDelete, linesCreatedData);
-        saveCreatedDataToServer(linesCreatedData);
+        saveDataToServer(linesCreatedData, linesCreatedURL);
+
         // clear input fields after use
         document.getElementById('deleteCreatedLineUsername').value = '';
         document.getElementById('deleteCreatedDate').value = '';
@@ -189,13 +202,17 @@ Promise.all(
         const userName = document.getElementById('deleteRemovedLineUsername').value.trim();
         const dateToDelete = document.getElementById('deleteRemovedDate').value;
 
+        // if fields are empty
         if (!userName || !dateToDelete) {
             alert('Please enter valid data!');
             return;
         }
 
+        const linesDeletedURL = `${baseURL}/update-lines-deleted`;
+
+        // give variables for functions to handle
         deleteLineData(userName, dateToDelete, linesRemovedData);
-        saveRemovedDataToServer(linesRemovedData);
+        saveDataToServer(linesRemovedData, linesDeletedURL);
 
         // clear input fields after use
         document.getElementById('deleteRemovedLineUsername').value = '';
@@ -207,15 +224,17 @@ Promise.all(
     {
         const timestamp = Date.parse(dateToDelete);
 
+        // if timestamp field is invalid, break
         if (isNaN(timestamp)) 
         {
             alert('Invalid date format!');
             return;
         }
 
+        // look for matching user in array
         const user = data.find(user => user.name === userName);
-
         if (!user) 
+        // if user not found
         {
             alert(`${userName} not found in users`);
             return;
@@ -233,7 +252,9 @@ Promise.all(
         // update the chart
         const chartSeries = lineChartCreated.series.find(series => series.name === userName);
         if (chartSeries) 
-            { chartSeries.setData(user.data, true); }
+            { 
+                chartSeries.setData(user.data, true); 
+            }
 
         // remove user if no data entries are left
         if (user.data.length === 0) 
@@ -260,7 +281,7 @@ Promise.all(
             alert('enter valid data!');
             return;
         }
-        else if (codeReadInput >= 10) 
+        else if (codeReadInput > 11) 
         {
             alert('value has to be equal to or less than 10');
             return;
@@ -271,12 +292,32 @@ Promise.all(
             return;
         }
         
+        const codeReadabilityURL = `${baseURL}/update-code-readability`;
 
         handleCodeReadability(userName, codeReadInput);
-        saveCodeReadDataToServer(barData);
+        saveDataToServer(barData, codeReadabilityURL);
 
         document.getElementById('userName3').value = '';
         document.getElementById('codeReadInput').value = '';
+    });
+
+    document.getElementById('deleteCodeReadButton').addEventListener('click', () => 
+    {
+        const userName = document.getElementById('userName4').value.trim();
+    
+        if (!userName) 
+        {
+            alert('Please enter a valid user name!');
+            return;
+        }
+    
+        const codeReadabilityURL = `${baseURL}/update-code-readability`;
+
+        deleteCodeReadabilityUser(userName);
+        saveDataToServer(barData, codeReadabilityURL);
+    
+        // Clear input field
+        document.getElementById('deleteUserName').value = '';
     });
 
     function handleCodeReadability(userName, codeReadInput) 
@@ -288,8 +329,8 @@ Promise.all(
             // update the second column for the user 
             if (!user) 
             {
-                alert(`${userName} not found in users`);
-                return;
+                codeReadDataset.data.push([userName, codeReadInput]);
+                console.log(`added new user: ${userName} with score ${codeReadInput}`);
             }
             else if (user) 
             {
@@ -300,36 +341,38 @@ Promise.all(
             }
         }
     }
+
+    function deleteCodeReadabilityUser(userName) 
+    {
+        // Find the "Code Read" dataset
+        let codeReadDataset = barData.find(dataset => dataset.name === "Code Read");
+        
+        if (!codeReadDataset) 
+        {
+            console.log('dataset not found.');
+            return;
+        }
+    
+        // Find the user in the dataset
+        const userIndex = codeReadDataset.data.findIndex(row => row[0] === userName);
+    
+        if (userIndex !== -1) 
+        {
+            // Remove the user from the dataset
+            codeReadDataset.data.splice(userIndex, 1);
+            console.log(`deleted user: ${userName} from Code Readability dataset.`);
+        } 
+        else
+        {
+            console.log(`user: ${userName} not found in Code Readability dataset.`);
+        }
+    }
 // change code readability function done
 
 // backend stuff
-    function saveRemovedDataToServer(updatedData) 
+    function saveDataToServer(updatedData, url) 
     {
-        fetch('http://localhost:5500/update-lines-deleted', 
-        {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedData)
-        })
-        .then(response => response.ok ? console.log('Data saved successfully') : console.error('Failed to save data:', response.statusText))
-        .catch(error => console.error('Error saving data:', error));
-    }
-
-    function saveCreatedDataToServer(updatedData) 
-    {
-        fetch('http://localhost:5500/update-lines-created', 
-        {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedData)
-        })
-        .then(response => response.ok ? console.log('lines created data saved successfully') : console.error('Failed to save data:', response.statusText))
-        .catch(error => console.error('error saving lines created data:', error));
-    }
-
-    function saveCodeReadDataToServer(updatedData) 
-    {
-        fetch('http://localhost:5500/update-code-readability', 
+        fetch(url, 
         {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
