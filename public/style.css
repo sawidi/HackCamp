@@ -16,6 +16,7 @@ body {
     flex-direction: column;
     text-align: center;
 	overflow: hidden;
+	overflow-y: scroll
 }
 
 .main-content {
@@ -40,6 +41,7 @@ body {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
     justify-content: flex-start; /* Align content to the top */
+	overflow-y: scroll
 }
 
 .sidebar1 {
@@ -47,6 +49,7 @@ body {
 }
 .sidebar2 {
 	background-color: firebrick;
+	overflow-y: scroll
 }
 
 .sidebar {

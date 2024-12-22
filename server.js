@@ -1,152 +1,116 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors'); // Import the CORS middleware
-
+const cors = require('cors');
 const app = express();
 const PORT = 5500;
 
-// Enable CORS for all routes
+// global CORS access
 app.use(cors());
-
-// Middleware to parse JSON body
+// JSON parsing
 app.use(express.json());
-
-// Serve static files (e.g., HTML, JS, JSON)
+// serve static files 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Endpoint to update linesDeletedData.json
-app.post('/update-lines-deleted', (req, res) => {
-    const newData = req.body;
 
-    // Log incoming data for debugging
-    console.log('New data received:', newData);
 
-    // Path to the JSON file
-    const filePath = path.join(__dirname, 'public/linesDeletedData.json');
 
-    // Read the current data from the file
-    fs.readFile(filePath, 'utf8', (readErr, fileData) => {
-        if (readErr) {
-            console.error('Error reading data:', readErr);
-            return res.status(500).send('Failed to read existing data');
-        }
 
-        // Log the current file data
-        console.log('Current file data:', fileData);
 
-        let existingData = [];
-        try {
-            existingData = JSON.parse(fileData); // Parse the existing data
-        } catch (parseErr) {
-            console.error('Error parsing existing data:', parseErr);
-            return res.status(500).send('Failed to parse existing data');
-        }
+// save lines removed data 
+    app.post('/update-lines-deleted', (req, res) => 
+    {
+        console.log('new unsorted data:', JSON.stringify(req.body, null, 2));
+        const incomingData = req.body;
+        const filePath = path.join(__dirname, 'public/linesDeletedData.json');
 
-       // Merge the new data with the existing data
-        newData.forEach(newUser => {
-            const existingUser = existingData.find(user => user.name.toLowerCase() === newUser.name.toLowerCase());
-            if (existingUser) {
-                // Avoid duplicate data points
-                newUser.data.forEach(newPoint => {
-                    const isDuplicate = existingUser.data.some(existingPoint => existingPoint[0] === newPoint[0]);
-                    if (!isDuplicate) {
-                        existingUser.data.push(newPoint);
-                    }
-                });
-            } else {
-                // Add the new user if not already in existing data
-                existingData.push(newUser);
+        if (!Array.isArray(incomingData)) 
+            { return res.status(400).send('invalid data; has to be an array'); }
+
+        // sort data by date
+        const sortedData = incomingData.map(user => (
+        {
+            name: user.name,
+            data: user.data.sort((a, b) => a[0] - b[0]) 
+            // in ascending order
+        }));
+
+        console.log('sorted data to write:', JSON.stringify(sortedData, null, 2));
+        // replace data in file with new sorted data
+        fs.writeFile(filePath, JSON.stringify(sortedData, null, 2), (writeErr) => 
+        {
+            if (writeErr) 
+            {
+                console.error('error saving data:', writeErr);
+                return res.status(500).send('failed to save data');
             }
-        });
-
-        const updatedData = existingData;
-        console.log('Updated data to write:', JSON.stringify(updatedData, null, 2));
-
-        // Write the merged data back to the file
-        fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), (writeErr) => {
-            if (writeErr) {
-                console.error('Error saving data:', writeErr);
-                return res.status(500).send('Failed to save data');
-            }
-            console.log('Data saved successfully');
-            res.status(200).send('Data saved successfully');
+            console.log('data saved');
+            res.status(200).send('data saved');
         });
     });
-});
+// save lines removed data done
 
 // save lines created data
-app.post('/update-lines-created', (req, res) => {
-    let newData = req.body;
+    app.post('/update-lines-created', (req, res) => 
+    {
+        console.log('incoming data:', JSON.stringify(req.body, null, 2));
 
-    console.log('Incoming data:', JSON.stringify(newData, null, 2));
+        const incomingData = req.body;
+        const filePath = path.join(__dirname, 'public/linesCreatedData.json');
 
-    if (!Array.isArray(newData)) {
-        // Convert to an array if it's a single object
-        if (typeof newData === 'object' && newData !== null) {
-            console.warn('Converting newData to an array.');
-            newData = [newData];
-        } else {
-            console.error('Invalid data format:', newData);
-            return res.status(400).send('Invalid data format. Expected an array.');
-        }
-    }
+        if (!Array.isArray(incomingData)) { return res.status(400).send('invalid data; has to be an array'); }
 
-    const filePath = path.join(__dirname, 'public/linesCreatedData.json');
+        // sort data by date
+        const sortedData = incomingData.map(user => (
+        {
+            name: user.name,
+            data: user.data.sort((a, b) => a[0] - b[0]) 
+            // in ascending order
+        }));
 
-    fs.readFile(filePath, 'utf8', (readErr, fileData) => {
-        let existingData = [];
-        if (readErr && readErr.code === 'ENOENT') {
-            console.log('File not found. Initializing new data.');
-        } else if (readErr) {
-            console.error('Error reading data:', readErr);
-            return res.status(500).send('Failed to read existing data');
-        } else {
-            try {
-                existingData = JSON.parse(fileData);
-            } catch (parseErr) {
-                console.error('Error parsing existing data:', parseErr);
-                return res.status(500).send('Failed to parse existing data');
-            }
-        }
-
-        console.log('Parsed existing data:', JSON.stringify(existingData, null, 2));
-
-        // Merge the new data with the existing data
-        newData.forEach(newUser => {
-            const existingUser = existingData.find(user => user.name.toLowerCase() === newUser.name.toLowerCase());
-            if (existingUser) {
-                // Avoid duplicate data points
-                newUser.data.forEach(newPoint => {
-                    const isDuplicate = existingUser.data.some(existingPoint => existingPoint[0] === newPoint[0]);
-                    if (!isDuplicate) {
-                        existingUser.data.push(newPoint);
-                    }
-                });
-            } else {
-                // Add the new user if not already in existing data
-                existingData.push(newUser);
-            }
-        });
-
-        const updatedData = existingData;
-        console.log('Updated data to write:', JSON.stringify(updatedData, null, 2));
-
-        // Write the updated data back to the JSON file
-        fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), (writeErr) => {
-            if (writeErr) {
-                console.error('Error saving data:', writeErr);
+        console.log('sorted data to write:', JSON.stringify(sortedData, null, 2));
+        // replace data in file with new sorted data
+        fs.writeFile(filePath, JSON.stringify(sortedData, null, 2), (writeErr) => {
+            if (writeErr) 
+            {
+                console.error('error saving data:', writeErr);
                 return res.status(500).send('Failed to save data');
             }
-            console.log('Data saved successfully');
-            res.status(200).send('Data saved successfully');
+            console.log('data saved');
+            res.status(200).send('data saved');
         });
+    });
+// save lines created data done
+
+
+
+// in-memory storage
+let codeReadabilityData = [];
+// code readability data update
+app.post('/update-code-readability', (req, res) => 
+{
+    const updatedData = req.body;
+    if (!updatedData || !Array.isArray(updatedData)) 
+        { return res.status(400).json({ error: 'invalid data format' }); }
+    console.log('new code readability data:', updatedData);
+
+    // save to in-memory storage
+    codeReadabilityData = updatedData;
+    // save data to a file, here its the bar chart data file in public  
+    fs.writeFile('public/barChart.json', JSON.stringify(codeReadabilityData, null, 2), (err) => 
+    {
+        if (err) 
+        {
+            console.error('error saving data to file:', err);
+            return res.status(500).json({ error: 'failed to save data' });
+        }
+        console.log('code readability data saved to file.');
+        res.status(200).json({ message: 'code readability data saved to file' });
     });
 });
 
 
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
-});
+
+// start the server
+app.listen(PORT, () => { console.log(`server is running at http://localhost:${PORT}`); });

@@ -38,8 +38,10 @@
 
 
             <div class="sidebar sidebar2">
-                <h1>Add something</h1>
-                <h2>Add created lines</h2>
+                <h1>Data Manipulation</h1>
+                <!-- Lines Created chart -->
+                <h2>Lines Created</h2>
+                <h3>Add entry</h3>
                 <div class="add-box add1">
                     <br>
                     <div>
@@ -60,7 +62,28 @@
                         </form>                        
                     </div>
                 </div>
-                <h2>Add removed lines</h2>
+                <h3>Delete entry</h3>
+                <div class="add-box add-delete">
+                    <br>
+                    <div>
+                        <form id="deleteLineForm">
+                            <label for="deleteCreatedLineUsername">User Name:</label>
+                            <br>
+                            <input type="text" id="deleteCreatedLineUsername" placeholder="Enter user name" required>
+                            <br>
+                            <label for="deleteCreatedDate">Date:</label>
+                            <br>
+                            <input type="date" id="deleteCreatedDate" required>
+                            <br>
+                            <button type="button" id="deleteCreatedButton">Delete Entry</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Lines Created chart done-->
+
+                <!-- Lines Deleted chart -->
+                <h2>Lines Deleted</h2>
+                <h3>Add entry</h3>
                 <div class="add-box add2">
                     <br>
                     <div>
@@ -81,7 +104,66 @@
                         </form>
                     </div>
                 </div>
+                <h3>Delete entry</h3>
+                <div class="add-box add-delete">
+                    <br>
+                    <div>
+                        <form id="deleteLineForm">
+                            <label for="deleteRemovedLineUsername">User Name:</label>
+                            <br>
+                            <input type="text" id="deleteRemovedLineUsername" placeholder="Enter user name" required>
+                            <br>
+                            <label for="deleteRemovedDate">Date:</label>
+                            <br>
+                            <input type="date" id="deleteRemovedDate" required>
+                            <br>
+                            <button type="button" id="deleteRemovedButton">Delete Entry</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Lines Deleted chart done -->
+
+                <!-- Bar chart -->
+                <!-- Code readability -->
+                <h2>Code Readability</h2>
+                <div class="add-box add3">
+                    <br>
+                    <div>
+                        <form id="codeReadabilityInput">
+                            <label for="userName3">User Name:</label>
+                            <br>
+                            <input type="text" id="userName3" placeholder="Enter user name" required>
+                            <br>
+                            <label for="codeReadInput">Lines Removed:</label>
+                            <br>
+                            <input type="number" id="codeReadInput" placeholder="Enter score" required>
+                            <br>
+                            <button type="button" id="codeReadButton">Add Data</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Code readability done-->
+                <!-- something else -->
+                <h2>Something else</h2>
+                <!-- <div class="add-box add4">
+                    <br>
+                    <div>
+                        <form id="codeReadabilityInput">
+                            <label for="userName3">User Name:</label>
+                            <br>
+                            <input type="text" id="userName3" placeholder="Enter user name" required>
+                            <br>
+                            <label for="codeReadInput">Lines Removed:</label>
+                            <br>
+                            <input type="number" id="codeReadInput" placeholder="Enter score" required>
+                            <br>
+                            <button type="button" id="codeReadButton">Add Data</button>
+                        </form>
+                    </div>
+                </div> -->
             </div>
+            <!-- something else done -->
+            <!-- Bar chart done-->
 
             
         </div>
