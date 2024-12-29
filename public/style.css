@@ -3,12 +3,18 @@
 @import url("https://code.highcharts.com/code/css/datagrid.css");
 @import url("https://code.highcharts.com/code/css/dashboards.css");
 
+:root{
+	--dark-blue: #355085;
+	--white: #fff
+}
+
 html, 
 body {
 	font-family: 'Montserrat', sans-serif;
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	background-color: var(--dark-blue);
 }
 .wrapper {
     height: 100%;
@@ -28,29 +34,165 @@ body {
 	flex: 1 100%;
 	margin: 1px;
 }
-.header {
-	background-color: aqua;
+/* header */
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines{
+    display: none;
 }
+
+.container{
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+
+.navbar{
+    box-shadow: 0px 5px 10px 0px #aaa;
+    position: relative;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    opacity: 0.85;
+    z-index: 100;
+}
+
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+}
+
+.menu-items{
+    order: 2;
+    display: flex;
+}
+.logo{
+    order: 1;
+    font-size: 2.3rem;
+}
+
+.menu-items li{
+    list-style: none;
+    margin-left: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.navbar a{
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover{
+    color: #117964;
+}
+/* header done */
+/* main */
 .main {
     flex: 3;
     order: 2;
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: flex-start; /* Align content to the top */
+    flex-direction: column; 
+    justify-content: flex-start; 
 	overflow-y: scroll
 }
+.chart{
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    
+    border: 20px solid #8FABED;
+    margin: 10px;
+}
+/* main done */
 
-.sidebar1 {
-	background-color: blue;
-}
-.sidebar2 {
-	background-color: firebrick;
-	overflow-y: scroll
-}
 
-.sidebar {
-	flex: 1;
-}
+/* side bar */
+	.sidebar {
+		flex: 1;
+		padding: 15px;
+		background-color: var(--white); 
+		border: 25px solid var(--dark-blue); 
+		border-radius: 5px; 
+		font-family: Arial, sans-serif;
+	}
+
+	/* title */
+	.sidebar h1 {
+		font-size: 18px;
+		color: #333;
+	}
+/* side bar done */
+
+/* side bar 1 */
+	.sidebar1 a {
+		display: block;
+		padding: 5px 7px; 
+		text-decoration: none;
+		color: #007BFF; 
+		border-radius: 5px; 
+	}
+
+	/* active */
+	.sidebar1 a:hover {
+		background-color: #007BFF; 
+		color: #fff; 
+	}
+	.sidebar a:active {
+		background-color: #0056b3;
+		color: #fff; 
+	}
+/* side bar 1 done */
+
+
+/* side bar 2 */
+	/* form containers */
+	.add-box {
+		padding: 15px;
+		background-color: #ffffff;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* shadow around the box */
+	}
+	form label {
+		display: block;
+		margin-bottom: 5px;
+		color: #555; 
+		font-weight: bold;
+	}
+	form input[type="text"],
+	form input[type="number"],
+	form input[type="date"] {
+		width: 100%;
+		padding: 8px 10px;
+		margin-bottom: 15px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 14px;
+		color: #333;
+		background-color: #f9f9f9;
+	}
+	form input::placeholder {
+		color: #aaa; 
+	}
+	form button {
+		padding: 10px 15px;
+		font-size: 14px;
+		color: #fff;
+		background-color: #007bff; 
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+	form button:hover {
+		background-color: #0056b3;
+	}
+/* side bar 2 done */
+
+
 
 #line #line2 #bar  {
     width: 300px;
@@ -59,7 +201,9 @@ body {
 	position: relative;
 	z-index: 10;
 }
-
+#line {
+	margin-top: 50px;
+}
 
 @media screen and (min-width:750px) {
 	.main {
