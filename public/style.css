@@ -5,7 +5,9 @@
 
 :root{
 	--dark-blue: #355085;
-	--white: #fff
+	--white: #fff;
+	--secondary-blue: #007bff;
+	--hover: #0056b3;
 }
 
 html, 
@@ -50,7 +52,7 @@ body {
 		box-shadow: 0px 5px 10px 0px #aaa;
 		position: relative;
 		width: 100%;
-		background: #fff;
+		background: var(--white);
 		color: #000;
 		opacity: 0.85;
 		z-index: 100;
@@ -86,7 +88,7 @@ body {
 	}
 
 	.navbar a:hover{
-		color: #117964;
+		color: var(--secondary-blue);
 	}
 /* header done */
 /* main */
@@ -102,7 +104,6 @@ body {
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
-		
 		border: 20px solid #8FABED;
 		margin: 10px;
 	}
@@ -114,12 +115,12 @@ body {
 		
 	}
 	.highcharts-data-table thead th {
-		background-color: #007bff;
+		background-color: var(--secondary-blue);
 		color: white;
 		font-weight: bold;
 		text-align: left;
 		padding: 10px;
-		border-bottom: 2px solid #0056b3;
+		border-bottom: 2px solid var(--hover);
 	}
 
 	.highcharts-data-table tbody tr:nth-child(even) {
@@ -130,7 +131,7 @@ body {
 	}
 	.highcharts-data-table tbody td {
 		padding: 10px;
-		border-bottom: 1px solid #ddd;
+		border-bottom: 1px solid var(--white);
 	}
 
 	/* highlight on hover */
@@ -162,18 +163,18 @@ body {
 		display: block;
 		padding: 5px 7px; 
 		text-decoration: none;
-		color: #007BFF; 
+		color: var(--secondary-blue); 
 		border-radius: 5px; 
 	}
 
 	/* active */
 	.sidebar1 a:hover {
-		background-color: #007BFF; 
-		color: #fff; 
+		background-color: var(--secondary-blue); 
+		color: var(--white); 
 	}
 	.sidebar a:active {
-		background-color: #0056b3;
-		color: #fff; 
+		background-color: var(--hover);
+		color: var(--white); 
 	}
 /* side bar 1 done */
 
@@ -181,8 +182,8 @@ body {
 	/* form containers */
 	.add-box {
 		padding: 15px;
-		background-color: #ffffff;
-		border: 1px solid #ddd;
+		background-color: var(--white);
+		border: 1px solid var(--white);
 		border-radius: 5px;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* shadow around the box */
 	}
@@ -213,15 +214,15 @@ body {
 	form button {
 		padding: 10px 15px;
 		font-size: 14px;
-		color: #fff;
-		background-color: #007bff; 
+		color: var(--white);
+		background-color: var(--secondary-blue); 
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
 		transition: background-color 0.3s;
 	}
 	form button:hover {
-		background-color: #0056b3;
+		background-color: var(--hover);
 	}
 /* side bar 2 done */
 
