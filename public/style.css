@@ -31,10 +31,6 @@ body {
 .header {
 	background-color: aqua;
 }
-.footer {
-	background-color: aquamarine;
-	margin-top: auto;
-}
 .main {
     flex: 3;
     order: 2;
