@@ -3,12 +3,20 @@
 @import url("https://code.highcharts.com/code/css/datagrid.css");
 @import url("https://code.highcharts.com/code/css/dashboards.css");
 
+:root{
+	--dark-blue: #355085;
+	--white: #fff;
+	--secondary-blue: #007bff;
+	--hover: #0056b3;
+}
+
 html, 
 body {
 	font-family: 'Montserrat', sans-serif;
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	background-color: var(--dark-blue);
 }
 .wrapper {
     height: 100%;
@@ -16,7 +24,7 @@ body {
     flex-direction: column;
     text-align: center;
 	overflow: hidden;
-	overflow-y: scroll
+	overflow-y: scroll;
 }
 
 .main-content {
@@ -28,33 +36,203 @@ body {
 	flex: 1 100%;
 	margin: 1px;
 }
-.header {
-	background-color: aqua;
-}
-.footer {
-	background-color: aquamarine;
-	margin-top: auto;
-}
-.main {
-    flex: 3;
-    order: 2;
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: flex-start; /* Align content to the top */
-	overflow-y: scroll
-}
 
-.sidebar1 {
-	background-color: blue;
-}
-.sidebar2 {
-	background-color: firebrick;
-	overflow-y: scroll
-}
+/* header */
+	.navbar input[type="checkbox"],
+	.navbar .hamburger-lines{
+		display: none;
+	}
 
-.sidebar {
-	flex: 1;
-}
+	.container{
+		max-width: 1200px;
+		width: 90%;
+		margin: auto;
+	}
+
+	.navbar{
+		box-shadow: 0px 5px 10px 0px #aaa;
+		position: relative;
+		width: 100%;
+		background: var(--white);
+		color: #000;
+		opacity: 0.85;
+		z-index: 100;
+	}
+
+	.navbar-container{
+		display: flex;
+		justify-content: space-between;
+		height: 64px;
+		align-items: center;
+	}
+
+	.editor{
+		border: 2px solid #8FABED; 
+		border-radius: 10px; 
+		padding: 8px; 
+		background-color: #e0e0e0;
+	}
+
+	.menu-items{
+		order: 2;
+		display: flex;
+	}
+	.logo{
+		order: 1;
+		font-size: 2.3rem;
+	}
+
+	.menu-items li{
+		list-style: none;
+		margin-left: 1.5rem;
+		font-size: 1.3rem;
+	}
+
+	.navbar a{
+		color: #444;
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.3s ease-in-out;
+	}
+
+	.navbar a:hover{
+		color: var(--hover);
+	}
+/* header done */
+
+/* main */
+	.main {
+		flex: 3;
+		order: 2;
+		display: flex;
+		flex-direction: column; 
+		justify-content: flex-start;
+	}
+	.chart{
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		border: 20px solid #8FABED;
+		margin: 10px;
+	}
+
+	/* table */
+	.highcharts-data-table {
+		margin: 20px auto;
+		width: 80%; 
+		
+	}
+	.highcharts-data-table thead th {
+		background-color: var(--secondary-blue);
+		color: white;
+		font-weight: bold;
+		text-align: left;
+		padding: 10px;
+		border-bottom: 2px solid var(--hover);
+	}
+
+	.highcharts-data-table tbody tr:nth-child(even) {
+		background-color: #f2f2f2; 
+	}
+	.highcharts-data-table tbody tr:nth-child(odd) {
+		background-color: var(--white); 
+	}
+	.highcharts-data-table tbody td {
+		padding: 10px;
+		border-bottom: 1px solid var(--white);
+	}
+
+	/* highlight on hover */
+	.highcharts-data-table tbody tr:hover {
+		background-color: #e9f5ff;
+		cursor: pointer; 
+	}
+/* main done */
+
+/* side bar */
+	.sidebar {
+		flex: 1;
+		padding: 15px;
+		background-color: var(--white); 
+		border: 25px solid var(--dark-blue); 
+		border-radius: 5px; 
+		font-family: Arial, sans-serif;
+	}
+
+	/* title */
+	.sidebar h1 {
+		font-size: 18px;
+		color: #333;
+	}
+/* side bar done */
+
+/* side bar 1 */
+	.sidebar1 a {
+		display: block;
+		padding: 5px 7px; 
+		text-decoration: none;
+		color: var(--secondary-blue); 
+		border-radius: 5px; 
+	}
+
+	/* active */
+	.sidebar1 a:hover {
+		background-color: var(--secondary-blue); 
+		color: var(--white); 
+	}
+	.sidebar a:active {
+		background-color: var(--hover);
+		color: var(--white); 
+	}
+/* side bar 1 done */
+
+/* side bar 2 */
+	/* form containers */
+	.add-box {
+		padding: 15px;
+		background-color: var(--white);
+		border: 1px solid var(--white);
+		border-radius: 5px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* shadow around the box */
+	}
+	.add-box h3 {
+		margin-top: -25px;
+	}
+	form label {
+		margin-bottom: -15px;
+		display: block;
+		color: #555; 
+		font-weight: bold;
+	}
+	form input[type="text"],
+	form input[type="number"],
+	form input[type="date"] {
+		width: 90%;
+		padding: 8px 10px;
+		margin-bottom: 15px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 14px;
+		color: #333;
+		background-color: #f9f9f9;
+	}
+	form input::placeholder {
+		color: #aaa; 
+	}
+	form button {
+		padding: 10px 15px;
+		font-size: 14px;
+		color: var(--white);
+		background-color: var(--secondary-blue); 
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+	form button:hover {
+		background-color: var(--hover);
+	}
+/* side bar 2 done */
 
 #line #line2 #bar  {
     width: 300px;
@@ -63,8 +241,11 @@ body {
 	position: relative;
 	z-index: 10;
 }
+#line {
+	margin-top: 50px;
+}
 
-
+/* media settings */
 @media screen and (min-width:750px) {
 	.main {
 		flex: 3;
@@ -84,3 +265,4 @@ body {
 		flex: 1;
 	}
 }
+/* media settings done */

@@ -38,6 +38,7 @@ Promise.all(
     {
         lineChartCreated = Highcharts.chart('line', 
         {
+            credits: {enabled: false},
             chart: { type: 'line' },
             title: { text: 'Lines Created by Users' },
             xAxis: { type: 'datetime' },
@@ -54,6 +55,7 @@ Promise.all(
     {
         lineChartDeleted = Highcharts.chart('line2', 
         {
+            credits: {enabled: false},
             chart: { type: 'line' },
             title: { text: 'Lines Deleted by Users' },
             xAxis: { type: 'datetime' },
@@ -69,6 +71,7 @@ Promise.all(
     {
         Highcharts.chart('bar', 
         {
+            credits: {enabled: false},
             chart: { type: 'bar' },
             title: { text: 'User rankings' },
             xAxis: {
