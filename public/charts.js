@@ -42,7 +42,8 @@ Promise.all(
             chart: { type: 'line' },
             title: { text: 'Lines Created by Users' },
             xAxis: { type: 'datetime' },
-            yAxis: { title: { text: 'Values' } },
+            yAxis: { title: { text: 'Lines created' } },
+            tooltip: { shared: true, valueSuffix: ' lines' },
             series: data.map(user => (
             {
                 name: user.name,
@@ -59,7 +60,8 @@ Promise.all(
             chart: { type: 'line' },
             title: { text: 'Lines Deleted by Users' },
             xAxis: { type: 'datetime' },
-            yAxis: { title: { text: 'Values' } },
+            yAxis: { title: { text: 'Lines deleted' } },
+            tooltip: { shared: true, valueSuffix: ' lines' },
             series: data.map(user => ({
                 name: user.name,
                 data: user.data
@@ -175,7 +177,7 @@ Promise.all(
 // add line stuff done
 
 // delete stuff
-    // line created chart entry variables
+    // line removed chart entry variables
     document.getElementById('deleteCreatedButton').addEventListener('click', () => 
     {
         const userName = document.getElementById('deleteCreatedLineUsername').value.trim();
