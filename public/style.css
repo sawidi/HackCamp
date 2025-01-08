@@ -267,3 +267,28 @@ body {
 	}
 }
 /* media settings done */
+
+/* contact.html */
+	.contactmain h1 {
+		color: #333;
+		font-size: 32px;
+		margin-bottom: 20px;
+	}
+
+	.contactmain p {
+		font-size: 18px;
+		margin: 10px 0;
+	}
+
+	.contactmain a {
+		text-decoration: none;
+		color: var(--white);
+		font-weight: bold; 
+		transition: color 0.3s ease, text-decoration 0.3s ease;
+	}
+
+	.contactmain a:hover {
+		color: var(--hover);
+		text-decoration: underline; 
+	}
+/* contact.html done */

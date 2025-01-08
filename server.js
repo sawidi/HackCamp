@@ -84,9 +84,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-// in-memory storage
-let codeReadabilityData = [];
 // code readability data update
+let codeReadabilityData = [];
+
 app.post('/update-code-readability', (req, res) => 
 {
     const updatedData = req.body;

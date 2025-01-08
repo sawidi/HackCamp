@@ -383,8 +383,8 @@ Promise.all(
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedData)
         })
-        .then(response => response.ok ? console.log('Code readability data saved successfully') : console.error('Failed to save data:', response.statusText))
-        .catch(error => console.error('Error saving code readability data:', error));
+        .then(response => response.ok ? console.log('data saved successfully') : console.error('Failed to save data:', response.statusText))
+        .catch(error => console.error('error saving data:', error));
     }
 // backend stuff done
 
