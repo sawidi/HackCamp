@@ -19,3 +19,8 @@ FEATURES
     - One bar chart, with two values
         -> Users can be added or removed
         -> Values can be dynamically changed
+
+HOW TO USE
+    - have Node.js downloaded on your device
+    - open up the terminal in the root folder and run this command:
+        node server.js
