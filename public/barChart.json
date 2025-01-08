@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Code Read",
+    "data": [
+      [
+        "Alice",
+        10
+      ],
+      [
+        "Charlie",
+        7
+      ]
+    ]
+  },
+  {
+    "name": "something else",
+    "data": [
+      [
+        "Alice",
+        10
+      ],
+      [
+        "Charlie",
+        7
+      ]
+    ]
+  }
+]

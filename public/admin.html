@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Highcharts Scripts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <nav class="navbar">
+                <div class="navbar-container container">
+                    <input type="checkbox" name="" id="">
+                    <div class="hamburger-lines">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </div>
+                    <ul class="menu-items">
+                        <li><a class="editor" href="regular.html">User</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <h1 class="logo">Chippy dGT</h1>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="main-content">
+            <div class="main">
+                <div class="chart" id="line"></div>
+                <div class="chart" id="line2"></div>
+                <div class="chart" id="bar"></div>
+            </div>
+
+
+            <div class="sidebar sidebar1">
+                <h1>Languages</h1>
+                <a href="java.html">Java</a>
+                <a href="PHP.html">PHP</a>
+                <a href="CPlusPlus.html">C++</a>
+                <a href="CSS.html">CSS</a>
+            </div>
+
+
+            <div class="sidebar sidebar2">
+                <h1>Data Manipulation</h1>
+                <!-- Lines Created chart -->
+                <h2>Lines Created</h2>
+                
+                <div class="add-box add1">
+                    <br>
+                    <div>
+                        <form id="addLineForm">
+                            <h3>Add entry</h3>
+                            <label for="username">Username</label>
+                            <br>
+                            <input type="text" id="username" placeholder="Enter user name" required>
+                            <br>
+                            <label for="createdlines">Lines Created</label>
+                            <br>
+                            <input type="number" id="createdlines" placeholder="Enter lines created" required>
+                            <br>
+                            <label for="datecreated">Date</label>
+                            <br>
+                            <input type="date" id="datecreated" required>
+                            <br>
+                            <button type="button" id="createdaddbutton">Add</button>
+                        </form>                        
+                    </div>
+                </div>
+                <div class="add-box add-delete">
+                    <br>
+                    <div>
+                        <form id="deleteLineForm">
+                            <h3>Delete entry</h3>
+                            <label for="deleteCreatedLineUsername">Username</label>
+                            <br>
+                            <input type="text" id="deleteCreatedLineUsername" placeholder="Enter user name" required>
+                            <br>
+                            <label for="deleteCreatedDate">Date</label>
+                            <br>
+                            <input type="date" id="deleteCreatedDate" required>
+                            <br>
+                            <button type="button" id="deleteCreatedButton">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Lines Created chart done-->
+
+                <!-- Lines Deleted chart -->
+                <h2>Lines Deleted</h2>
+                <div class="add-box add2">
+                    <br>
+                    <div>
+                        <form id="removeLineForm">
+                            <h3>Add entry</h3>
+                            <label for="userName2">Username</label>
+                            <br>
+                            <input type="text" id="userName2" placeholder="Enter user name" required>
+                            <br>
+                            <label for="removedLines">Lines Removed</label>
+                            <br>
+                            <input type="number" id="removedLines" placeholder="Enter lines removed" required>
+                            <br>
+                            <label for="dateRemoved">Date</label>
+                            <br>
+                            <input type="date" id="dateRemoved" required>
+                            <br>
+                            <button type="button" id="addButton2">Add</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="add-box add-delete2">
+                    <br>
+                    <div>
+                        <form id="deleteLineForm">
+                            <h3>Delete entry</h3>
+                            <label for="deleteRemovedLineUsername">Username</label>
+                            <br>
+                            <input type="text" id="deleteRemovedLineUsername" placeholder="Enter user name" required>
+                            <br>
+                            <label for="deleteRemovedDate">Date</label>
+                            <br>
+                            <input type="date" id="deleteRemovedDate" required>
+                            <br>
+                            <button type="button" id="deleteRemovedButton">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Lines Deleted chart done -->
+
+                <!-- Bar chart -->
+                <!-- Code readability -->
+                <h2>Code Readability</h2>
+                <div class="add-box add3">
+                    <br>
+                    <div>
+                        <form id="codeReadabilityInput">
+                            <h3>Modify</h3>
+                            <label for="userName3">Username</label>
+                            <br>
+                            <input type="text" id="userName3" placeholder="Enter user name" required>
+                            <br>
+                            <label for="codeReadInput">Score</label>
+                            <br>
+                            <input type="number" id="codeReadInput" placeholder="Enter score" required>
+                            <br>
+                            <button type="button" id="codeReadButton">Add</button>
+                        </form>
+                    </div>
+                    <br>
+                    <!-- remove user -->
+                    <div>
+                        <form id="codeReadabilityInput2">
+                            <label for="userName4">Username</label>
+                            <br>
+                            <input type="text" id="userName4" placeholder="Enter user name" required>
+                            <br>
+                            <button type="button" id="deleteCodeReadButton">Remove</button>
+                        </form>
+                    </div>
+                    <!-- remove user done -->
+                </div>
+                <!-- Code readability done-->
+                <!-- something else -->
+                <h2>Something else</h2>
+                <!-- <div class="add-box add4">
+                    <br>
+                    <div>
+                        <form id="codeReadabilityInput">
+                            <label for="userName3">User Name:</label>
+                            <br>
+                            <input type="text" id="userName3" placeholder="Enter user name" required>
+                            <br>
+                            <label for="codeReadInput">Lines Removed:</label>
+                            <br>
+                            <input type="number" id="codeReadInput" placeholder="Enter score" required>
+                            <br>
+                            <button type="button" id="codeReadButton">Add Data</button>
+                        </form>
+                    </div>
+                </div> -->
+            </div>
+            <!-- something else done -->
+            <!-- Bar chart done-->
+
+            
+        </div>
+
+        
+    
+    </div>
+</body>
+
+<script src="charts.js"></script>
+</html>
+ 
